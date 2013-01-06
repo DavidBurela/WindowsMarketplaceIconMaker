@@ -4,58 +4,70 @@
     Title="Windows Phone Icons Maker 1.0" SizeToContent="WidthAndHeight" Icon="WP_IconMaker.ico"
     AllowDrop="True" PreviewDrop="myImage_Drop" PreviewDragOver="myImage_PreviewDragOver" Loaded="Window_Loaded" Keyboard.PreviewKeyDown="Window_PreviewKeyDown" >
     <Window.Resources>
-    	<Storyboard x:Key="Storyboard1" FillBehavior="Stop">
-    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="iconPanel">
-    			<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-    			<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
-    		</DoubleAnimationUsingKeyFrames>
-    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="iconPanel">
-    			<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-    			<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
-    		</DoubleAnimationUsingKeyFrames>
-    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="iconPanel">
-    			<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0" KeySpline="1,0,1,1"/>
-    			<SplineDoubleKeyFrame KeyTime="0:0:2" Value="2000" KeySpline="1,0,1,1"/>
-    		</DoubleAnimationUsingKeyFrames>
-    	</Storyboard>
+        <Storyboard x:Key="Storyboard1" FillBehavior="Stop">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="iconPanel">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="iconPanel">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="iconPanel">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0" KeySpline="1,0,1,1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="2000" KeySpline="1,0,1,1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
 
     <Grid Background="DarkGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="600" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="800" />
+            <ColumnDefinition Width="*" MinWidth="500" />
             <ColumnDefinition Width="*" MinWidth="300" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Button Margin="10,2,10,2" Height="23" Name="Open" Width="91" Click="Open_Click" >Open Image</Button>
             <Button Margin="10,2,10,2" Height="23" Name="Save" Width="91" Click="Save_Click" >Save Icons</Button>
-            <Label Name="projectLabel" Margin="10,2,10,2">Project Name</Label>
+            <Label Name="projectLabel" Margin="10,2,10,2">Folder Name</Label>
             <TextBox Name="projectName" Margin="2,2,10,2" Width="150" TextChanged="projectName_TextChanged" />
-            
+
         </StackPanel>
         <Canvas Name="myCanvas" Width="800" Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1"  PreviewMouseLeftButtonDown="UC_MouseLeftButtonDown" PreviewMouseMove="UC_MouseMove" PreviewMouseLeftButtonUp="myCanvas_PreviewMouseLeftButtonUp"  >
             <Image Name="grayImage" Canvas.Top="0" Canvas.Left="0" Width="800" Height="600" MouseLeftButtonDown="UC_MouseLeftButtonDown" MouseMove="UC_MouseMove" HorizontalAlignment="Left" VerticalAlignment="Top" SizeChanged="grayImage_SizeChanged"  />
         </Canvas>
-        <StackPanel Name="iconPanel" MinWidth="300" Grid.RowSpan="2" Grid.Column="1"  Orientation="Vertical" HorizontalAlignment="Right" Width="220" RenderTransformOrigin="0.5,0.5">
-        	<StackPanel.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform/>
-        			<RotateTransform/>
-        			<TranslateTransform/>
-        		</TransformGroup>
-        	</StackPanel.RenderTransform>
-            <Rectangle Name="Icon300" Width="300" Height="300" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Name="name300" FontFamily="Arial" FontSize="12"  HorizontalAlignment="Center" Margin="110,2,110,0"/>
-            <Rectangle Name="Icon173" Width="173" Height="173" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Name="name173" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
-            <Rectangle Name="Icon62" Width="62" Height="62" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Name="name62" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
-        </StackPanel>
-        <Label Grid.Row="2" Name="CompleteNotice" Margin="10,2,10,2" Foreground="Black" Visibility="Visible">"Copy and Past from Clipboard, or Click [Open Image], or Drag and Drop a Picture to be icons"</Label>
+
+        <TabControl Name="iconPanel" MinWidth="300" Grid.RowSpan="3" Grid.Column="1" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
+            <TabItem Header="Windows Phone 7">
+                <StackPanel Orientation="Vertical" >
+                    <Rectangle Name="Wp7Icon300" Width="300" Height="300" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                    <TextBlock Name="Wp7Name300" FontFamily="Arial" FontSize="12"  HorizontalAlignment="Center" />
+                    <Rectangle Name="Wp7Icon173" Width="173" Height="173" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                    <TextBlock Name="Wp7Name173" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center"/>
+                    <Rectangle Name="Wp7Icon62" Width="62" Height="62" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                    <TextBlock Name="Wp7Name62" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Windows Phone 8">
+                <TextBlock>Coming soon</TextBlock>
+            </TabItem>
+            <TabItem Header="Windows 8">
+                <TextBlock>Coming soon</TextBlock>
+            </TabItem>
+            <TabControl.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TabControl.RenderTransform>
+        </TabControl>
+        <Label Grid.Row="2" Name="CompleteNotice" Margin="0,0,10,0" Foreground="Black" Visibility="Visible">"Copy and Past from Clipboard, or Click [Open Image], or Drag and Drop a Picture to be icons"</Label>
+
     </Grid>
 </Window>
