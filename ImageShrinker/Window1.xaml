@@ -53,8 +53,8 @@
             <TextBlock Name="name300" FontFamily="Arial" FontSize="12"  HorizontalAlignment="Center" Margin="110,2,110,0"/>
             <Rectangle Name="Icon173" Width="173" Height="173" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
             <TextBlock Name="name173" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
-            <Rectangle Name="Icon63" Width="63" Height="63" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Name="name63" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
+            <Rectangle Name="Icon62" Width="62" Height="62" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Name="name62" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
         </StackPanel>
         <Label Grid.Row="2" Name="CompleteNotice" Margin="10,2,10,2" Foreground="Black" Visibility="Visible">"Copy and Past from Clipboard, or Click [Open Image], or Drag and Drop a Picture to be icons"</Label>
     </Grid>
