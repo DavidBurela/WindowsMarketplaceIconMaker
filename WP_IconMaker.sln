@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP_IconMaker", "ImageShrinker\WP_IconMaker.csproj", "{945A2F41-1EEB-4D77-8516-D7A757ACE0D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{945A2F41-1EEB-4D77-8516-D7A757ACE0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{945A2F41-1EEB-4D77-8516-D7A757ACE0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{945A2F41-1EEB-4D77-8516-D7A757ACE0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{945A2F41-1EEB-4D77-8516-D7A757ACE0D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
