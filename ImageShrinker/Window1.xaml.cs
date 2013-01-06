@@ -144,14 +144,12 @@ namespace ImageShrinker
         private void DisplayIconNames()
         {
             string name = projectName.Text;
-            name200.Text = name + "_200.png";
-            name200.Visibility = Visibility.Visible;
-            name173.Text = name + "_173.png";
+            name300.Text = "StoreIcon.png";
+            name300.Visibility = Visibility.Visible;
+            name173.Text = "Background.png";
             name173.Visibility = Visibility.Visible;
-            name99.Text = name + "_99.png";
-            name99.Visibility = Visibility.Visible;
-            name62.Text = name + "_62.png";
-            name62.Visibility = Visibility.Visible;
+            name63.Text = "ApplicationIcon.png";
+            name63.Visibility = Visibility.Visible;
         }
         private void projectName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -163,22 +161,27 @@ namespace ImageShrinker
         private void Save_Click(object sender, RoutedEventArgs e)
         {
 
-            if (Icon200.Fill != null)
+            if (Icon300.Fill != null)
             {
                 string path = System.IO.Path.GetDirectoryName(this.fileName);
-                path = path + "\\" + projectName.Text + " Icons";
-                if (Directory.Exists(path))
+
+                // Create the folder if needed
+                string winPhonePath = path + "\\" + projectName.Text + " Windows Phone Icons";
+                if (!Directory.Exists(winPhonePath))
                 {
-                    MessageBox.Show(openFolder);
-                    return;
+                    System.IO.Directory.CreateDirectory(winPhonePath);
                 }
-                System.IO.Directory.CreateDirectory(path);
-                EncodeAndSave(Icon200, name200.Text as string, path);
-                EncodeAndSave(Icon173, name173.Text as string, path);
-                EncodeAndSave(Icon173, "Background.png", path);
-                EncodeAndSave(Icon99, name99.Text as string, path);
-                EncodeAndSave(Icon62, name62.Text as string, path);
-                EncodeAndSave(Icon62, "ApplicationIcon.png", path);
+
+                //string win8Path = path + "\\" + projectName.Text + " Windows 8 Icons";
+                //if (!Directory.Exists(win8Path))
+                //{
+                //    System.IO.Directory.CreateDirectory(win8Path);
+                //}
+
+                GenerateWindowsPhoneIcons(winPhonePath);
+                //GenerateWindows8Icons(winPhonePath);
+
+
                 string folder = "On same folder with your image";
                 if (IsPasted) folder = "On your desktop";
                 if (IsJapanese)
@@ -186,6 +189,7 @@ namespace ImageShrinker
                     folder = "画像と同じフォルダーに";
                     if (IsPasted) folder = "デスクトップに";
                 }
+
                 CompleteNotice.Content = folder + projectName.Text + " Icons" + notice3;
                 CompleteNotice.Visibility = Visibility.Visible;
 
@@ -198,6 +202,15 @@ namespace ImageShrinker
             }
             
         }
+
+        private void GenerateWindowsPhoneIcons(string path)
+        {
+            System.IO.Directory.CreateDirectory(path);
+            EncodeAndSave(Icon300, "StoreIcon.png", path);
+            EncodeAndSave(Icon173, "Background.png", path);
+            EncodeAndSave(Icon63, "ApplicationIcon.png", path);
+        }
+
         private void EncodeAndSave(FrameworkElement icon, string name, string filePath)
         {
             // Create BitmapFrame for Icon
@@ -264,15 +277,13 @@ namespace ImageShrinker
             scale = imageSource.Width / grayImage.ActualWidth;
             string name = System.IO.Path.GetFileNameWithoutExtension(fileName);
             projectName.Text = name;
-            name200.Visibility = Visibility.Hidden;
+            name300.Visibility = Visibility.Hidden;
             name173.Visibility = Visibility.Hidden;
-            name62.Visibility = Visibility.Hidden;
-            name99.Visibility = Visibility.Hidden;
+            name63.Visibility = Visibility.Hidden;
             CompleteNotice.Content = notice1;
-            Icon200.Fill = null;
+            Icon300.Fill = null;
             Icon173.Fill = null;
-            Icon99.Fill = null;
-            Icon62.Fill = null;
+            Icon63.Fill = null;
             myCanvas.Children.Remove(rectFrame);
         }
 
@@ -363,10 +374,9 @@ namespace ImageShrinker
                 brush.ViewboxUnits = BrushMappingMode.Absolute;
                 brush.Stretch = Stretch.Fill;
 
-                Icon200.Fill = brush;
+                Icon300.Fill = brush;
                 Icon173.Fill = brush;
-                Icon99.Fill = brush;
-                Icon62.Fill = brush;
+                Icon63.Fill = brush;
                 DisplayIconNames();
             }
         }

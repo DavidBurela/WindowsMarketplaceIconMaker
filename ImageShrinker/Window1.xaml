@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="800" />
-            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="*" MinWidth="300" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Button Margin="10,2,10,2" Height="23" Name="Open" Width="91" Click="Open_Click" >Open Image</Button>
@@ -40,7 +40,7 @@
         <Canvas Name="myCanvas" Width="800" Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1"  PreviewMouseLeftButtonDown="UC_MouseLeftButtonDown" PreviewMouseMove="UC_MouseMove" PreviewMouseLeftButtonUp="myCanvas_PreviewMouseLeftButtonUp"  >
             <Image Name="grayImage" Canvas.Top="0" Canvas.Left="0" Width="800" Height="600" MouseLeftButtonDown="UC_MouseLeftButtonDown" MouseMove="UC_MouseMove" HorizontalAlignment="Left" VerticalAlignment="Top" SizeChanged="grayImage_SizeChanged"  />
         </Canvas>
-        <StackPanel Name="iconPanel" Grid.RowSpan="2" Grid.Column="1"  Orientation="Vertical" HorizontalAlignment="Right" Width="220" RenderTransformOrigin="0.5,0.5">
+        <StackPanel Name="iconPanel" MinWidth="300" Grid.RowSpan="2" Grid.Column="1"  Orientation="Vertical" HorizontalAlignment="Right" Width="220" RenderTransformOrigin="0.5,0.5">
         	<StackPanel.RenderTransform>
         		<TransformGroup>
         			<ScaleTransform/>
@@ -49,14 +49,12 @@
         			<TranslateTransform/>
         		</TransformGroup>
         	</StackPanel.RenderTransform>
-            <Rectangle Name="Icon200" Width="200" Height="200" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Name="name200" FontFamily="Arial" FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
+            <Rectangle Name="Icon300" Width="300" Height="300" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Name="name300" FontFamily="Arial" FontSize="12"  HorizontalAlignment="Center" Margin="110,2,110,0"/>
             <Rectangle Name="Icon173" Width="173" Height="173" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
             <TextBlock Name="name173" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
-            <Rectangle Name="Icon99" Width="99" Height="99" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Name="name99" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
-            <Rectangle Name="Icon62" Width="62" Height="62" Margin="0,5,0,0" HorizontalAlignment="Center" />
-            <TextBlock Name="name62" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
+            <Rectangle Name="Icon63" Width="63" Height="63" Margin="0,5,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Name="name63" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" Margin="0,2,0,0"/>
         </StackPanel>
         <Label Grid.Row="2" Name="CompleteNotice" Margin="10,2,10,2" Foreground="Black" Visibility="Visible">"Copy and Past from Clipboard, or Click [Open Image], or Drag and Drop a Picture to be icons"</Label>
     </Grid>
