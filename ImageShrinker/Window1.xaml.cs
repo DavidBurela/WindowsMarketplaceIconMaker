@@ -141,26 +141,12 @@ namespace ImageShrinker
             }
             NewImageDisplayed();
         }
-        private void DisplayIconNames()
-        {
-            string name = projectName.Text;
-            Wp7Name300.Text = "StoreIcon.png";
-            Wp7Name300.Visibility = Visibility.Visible;
-            Wp7Name173.Text = "Background.png";
-            Wp7Name173.Visibility = Visibility.Visible;
-            Wp7Name62.Text = "ApplicationIcon.png";
-            Wp7Name62.Visibility = Visibility.Visible;
-        }
-        private void projectName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            DisplayIconNames();
-        }
+
         #endregion ShowImage
 
         #region SaveIcons
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-
             if (Wp7Icon300.Fill != null)
             {
                 string path = System.IO.Path.GetDirectoryName(this.fileName);
@@ -168,7 +154,7 @@ namespace ImageShrinker
 
                 GenerateWp7Icons(path);
                 //GenerateWp8Icons(path);
-                //GenerateWindows8Icons(path);
+                GenerateWin8Icons(path);
 
                 string folder = "On same folder with your image";
                 if (IsPasted) folder = "On your desktop";
@@ -204,6 +190,36 @@ namespace ImageShrinker
             EncodeAndSave(Wp7Icon300, "StoreIcon.png", path);
             EncodeAndSave(Wp7Icon173, "Background.png", path);
             EncodeAndSave(Wp7Icon62, "ApplicationIcon.png", path);
+        }
+
+        private void GenerateWin8Icons(string path)
+        {
+            // Create the folder if needed
+            path = path + "\\" + projectName.Text + " Win8 Icons";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            // Generate the icons
+            EncodeAndSave(Win8Logo180, "Logo.scale-180.png", path);
+            EncodeAndSave(Win8Logo140, "Logo.scale-140.png", path);
+            EncodeAndSave(Win8Logo100, "Logo.scale-100.png", path);
+            EncodeAndSave(Win8Logo80,  "Logo.scale-80.png", path);
+
+            EncodeAndSave(Win8SmallLogo180, "SmallLogo.scale-180.png", path);
+            EncodeAndSave(Win8SmallLogo140, "SmallLogo.scale-140.png", path);
+            EncodeAndSave(Win8SmallLogo100, "SmallLogo.scale-100.png", path);
+            EncodeAndSave(Win8SmallLogo80,  "SmallLogo.scale-80.png", path);
+
+            EncodeAndSave(Win8SmallLogoTarget256,"SmallLogo.target-256.png", path);
+            EncodeAndSave(Win8SmallLogoTarget48, "SmallLogo.target-48.png", path);
+            EncodeAndSave(Win8SmallLogoTarget32, "SmallLogo.target-32.png", path);
+            EncodeAndSave(Win8SmallLogoTarget16, "SmallLogo.target-16.png", path);
+
+            EncodeAndSave(Win8StoreLogo180, "StoreLogo.scale-180.png", path);
+            EncodeAndSave(Win8StoreLogo140, "StoreLogo.scale-140.png", path);
+            EncodeAndSave(Win8StoreLogo100, "StoreLogo.scale-100.png", path);
         }
 
         private void EncodeAndSave(FrameworkElement icon, string name, string filePath)
@@ -272,9 +288,6 @@ namespace ImageShrinker
             scale = imageSource.Width / grayImage.ActualWidth;
             string name = System.IO.Path.GetFileNameWithoutExtension(fileName);
             projectName.Text = name;
-            Wp7Name300.Visibility = Visibility.Hidden;
-            Wp7Name173.Visibility = Visibility.Hidden;
-            Wp7Name62.Visibility = Visibility.Hidden;
             CompleteNotice.Content = notice1;
             Wp7Icon300.Fill = null;
             Wp7Icon173.Fill = null;
@@ -369,10 +382,30 @@ namespace ImageShrinker
                 brush.ViewboxUnits = BrushMappingMode.Absolute;
                 brush.Stretch = Stretch.Fill;
 
+                // WP7
                 Wp7Icon300.Fill = brush;
                 Wp7Icon173.Fill = brush;
                 Wp7Icon62.Fill = brush;
-                DisplayIconNames();
+
+                // Win8
+                Win8Logo180.Fill = brush;
+                Win8Logo140.Fill = brush;
+                Win8Logo100.Fill = brush;
+                Win8Logo80.Fill = brush;
+
+                Win8SmallLogo180.Fill = brush;
+                Win8SmallLogo140.Fill = brush;
+                Win8SmallLogo100.Fill = brush;
+                Win8SmallLogo80.Fill = brush;
+                Win8SmallLogoTarget256.Fill = brush;
+                Win8SmallLogoTarget48.Fill = brush;
+                Win8SmallLogoTarget32.Fill = brush;
+                Win8SmallLogoTarget16.Fill = brush;
+
+                Win8StoreLogo180.Fill = brush;
+                Win8StoreLogo140.Fill = brush;
+                Win8StoreLogo100.Fill = brush;
+
             }
         }
 

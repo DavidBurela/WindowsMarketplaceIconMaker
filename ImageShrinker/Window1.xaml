@@ -22,7 +22,7 @@
 
     <Grid Background="DarkGray">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30" MaxHeight="30" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
@@ -34,29 +34,56 @@
             <Button Margin="10,2,10,2" Height="23" Name="Open" Width="91" Click="Open_Click" >Open Image</Button>
             <Button Margin="10,2,10,2" Height="23" Name="Save" Width="91" Click="Save_Click" >Save Icons</Button>
             <Label Name="projectLabel" Margin="10,2,10,2">Folder Name</Label>
-            <TextBox Name="projectName" Margin="2,2,10,2" Width="150" TextChanged="projectName_TextChanged" />
+            <TextBox Name="projectName" Margin="2,2,10,2" Width="150" />
 
         </StackPanel>
         <Canvas Name="myCanvas" Width="800" Height="600" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1"  PreviewMouseLeftButtonDown="UC_MouseLeftButtonDown" PreviewMouseMove="UC_MouseMove" PreviewMouseLeftButtonUp="myCanvas_PreviewMouseLeftButtonUp"  >
             <Image Name="grayImage" Canvas.Top="0" Canvas.Left="0" Width="800" Height="600" MouseLeftButtonDown="UC_MouseLeftButtonDown" MouseMove="UC_MouseMove" HorizontalAlignment="Left" VerticalAlignment="Top" SizeChanged="grayImage_SizeChanged"  />
         </Canvas>
 
-        <TabControl Name="iconPanel" MinWidth="300" Grid.RowSpan="3" Grid.Column="1" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
+        <TabControl Name="iconPanel" MinWidth="300" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
             <TabItem Header="Windows Phone 7">
-                <StackPanel Orientation="Vertical" >
-                    <Rectangle Name="Wp7Icon300" Width="300" Height="300" Margin="0,5,0,0" HorizontalAlignment="Center" />
-                    <TextBlock Name="Wp7Name300" FontFamily="Arial" FontSize="12"  HorizontalAlignment="Center" />
-                    <Rectangle Name="Wp7Icon173" Width="173" Height="173" Margin="0,5,0,0" HorizontalAlignment="Center"/>
-                    <TextBlock Name="Wp7Name173" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center"/>
-                    <Rectangle Name="Wp7Icon62" Width="62" Height="62" Margin="0,5,0,0" HorizontalAlignment="Center" />
-                    <TextBlock Name="Wp7Name62" FontFamily="Arial"  FontSize="12"  HorizontalAlignment="Center" />
-                </StackPanel>
+                <ScrollViewer >
+                    <StackPanel Orientation="Vertical" >
+                        <TextBlock Text="StoreTile.png" />
+                        <Rectangle Name="Wp7Icon300" Width="300" Height="300" Margin="5" HorizontalAlignment="Center" />
+                        <TextBlock Text="Background.png" />
+                        <Rectangle Name="Wp7Icon173" Width="173" Height="173" Margin="5" HorizontalAlignment="Center"/>
+                        <TextBlock Text="ApplicationIcon.png" />
+                        <Rectangle Name="Wp7Icon62" Width="62" Height="62" Margin="5" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Windows Phone 8">
                 <TextBlock>Coming soon</TextBlock>
             </TabItem>
             <TabItem Header="Windows 8">
-                <TextBlock>Coming soon</TextBlock>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock>Logo.scale-___.png</TextBlock>
+                        <Rectangle Name="Win8Logo180" Width="180" Height="180" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8Logo140" Width="140" Height="140" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8Logo100" Width="100" Height="100" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8Logo80"  Width="80"  Height="80" Margin="0,5,0,0" HorizontalAlignment="Center" />
+
+                        <TextBlock>SmallLogo.scale-___.png</TextBlock>
+                        <Rectangle Name="Win8SmallLogo180" Width="54" Height="54" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8SmallLogo140" Width="42" Height="42" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8SmallLogo100" Width="30" Height="30" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8SmallLogo80"  Width="24"  Height="24" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <TextBlock>SmallLogo.target-___.png</TextBlock>
+                        <Rectangle Name="Win8SmallLogoTarget256" Width="256" Height="256" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8SmallLogoTarget48" Width="48" Height="48" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8SmallLogoTarget32" Width="32" Height="32" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8SmallLogoTarget16"  Width="16"  Height="16" Margin="0,5,0,0" HorizontalAlignment="Center" />
+
+                        <TextBlock>StoreLogo.scale-___.png</TextBlock>
+                        <Rectangle Name="Win8StoreLogo180" Width="90" Height="90" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8StoreLogo140" Width="70" Height="70" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8StoreLogo100" Width="50" Height="50" Margin="0,5,0,0" HorizontalAlignment="Center" />
+
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
             <TabControl.RenderTransform>
                 <TransformGroup>
