@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -145,13 +146,22 @@ namespace ImageShrinker
         #endregion ShowImage
 
         #region SaveIcons
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private async void Save_Click(object sender, RoutedEventArgs e)
         {
             if (Wp7Icon300.Fill != null)
             {
+                // due to virtualisation, WPF doesn't render each tab until the SelectedIndex changes
+                // This is a little hack using .Net 4.5 awaitable, it will change the tab, yield back to the UI renderer, then continue.
+                var currentIndex = iconPanel.SelectedIndex;
+                iconPanel.SelectedIndex = 0;
+                await Task.Delay(100);
+                iconPanel.SelectedIndex = 1;
+                await Task.Delay(100);
+                iconPanel.SelectedIndex = 2;
+                await Task.Delay(100);
+                iconPanel.SelectedIndex = currentIndex;
+
                 string path = System.IO.Path.GetDirectoryName(this.fileName);
-
-
                 GenerateWp7Icons(path);
                 //GenerateWp8Icons(path);
                 GenerateWin8Icons(path);
