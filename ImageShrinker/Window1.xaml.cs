@@ -48,7 +48,7 @@ namespace ImageShrinker
                 notice2 = "気に入ったら[アイコン保存]ボタンをクリック";
                 notice3 = "フォルダーを作成し、保存しました";
                 notice4 = "PNG ファイルか JPG ファイルをロードしてください";
-                notice5 = "アイコン作成に失敗、"+notice1;
+                notice5 = "アイコン作成に失敗、" + notice1;
                 openFilter = "画像ファイル (*.png, *.jpg)|*.png;*.jpg|すべてのファイル (*.*)|*.*";
                 openFolder = "同じプロジェクト名のアイコンが既にあります、別のプロジェクト名に変更してください";
             }
@@ -86,7 +86,7 @@ namespace ImageShrinker
                     ShowImage(source);
                 }
             }
-            
+
         }
         #endregion OpenImage
 
@@ -119,7 +119,7 @@ namespace ImageShrinker
             }
             NewImageDisplayed();
         }
-        
+
         // Show Image for file load and drag
         private void ShowImage(string filename)
         {
@@ -152,18 +152,18 @@ namespace ImageShrinker
             {
                 // due to virtualisation, WPF doesn't render each tab until the SelectedIndex changes
                 // This is a little hack using .Net 4.5 awaitable, it will change the tab, yield back to the UI renderer, then continue.
-                var currentIndex = iconPanel.SelectedIndex;
-                iconPanel.SelectedIndex = 0;
+                var currentIndex = iconTabControl.SelectedIndex;
+                iconTabControl.SelectedIndex = 0;
                 await Task.Delay(100);
-                iconPanel.SelectedIndex = 1;
+                iconTabControl.SelectedIndex = 1;
                 await Task.Delay(100);
-                iconPanel.SelectedIndex = 2;
+                iconTabControl.SelectedIndex = 2;
                 await Task.Delay(100);
-                iconPanel.SelectedIndex = currentIndex;
+                iconTabControl.SelectedIndex = currentIndex;
 
                 string path = System.IO.Path.GetDirectoryName(this.fileName);
                 GenerateWp7Icons(path);
-                //GenerateWp8Icons(path);
+                GenerateWp8Icons(path);
                 GenerateWin8Icons(path);
 
                 string folder = "On same folder with your image";
@@ -184,7 +184,7 @@ namespace ImageShrinker
             {
                 CompleteNotice.Content = notice5;
             }
-            
+
         }
 
         private void GenerateWp7Icons(string path)
@@ -202,6 +202,21 @@ namespace ImageShrinker
             EncodeAndSave(Wp7Icon62, "ApplicationIcon.png", path);
         }
 
+        private void GenerateWp8Icons(string path)
+        {
+            // Create the folder if needed
+            path = path + "\\" + projectName.Text + " WP8 Icons";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            // Generate the icons
+            EncodeAndSave(Wp8AppIcon, "ApplicationIcon.png", path);
+            EncodeAndSave(Wp8FlipMedium, "FlipCycleTileMedium.png", path);
+            EncodeAndSave(Wp8FlipSmall, "FlipCycleTileSmall.png", path);
+        }
+
         private void GenerateWin8Icons(string path)
         {
             // Create the folder if needed
@@ -215,14 +230,14 @@ namespace ImageShrinker
             EncodeAndSave(Win8Logo180, "Logo.scale-180.png", path);
             EncodeAndSave(Win8Logo140, "Logo.scale-140.png", path);
             EncodeAndSave(Win8Logo100, "Logo.scale-100.png", path);
-            EncodeAndSave(Win8Logo80,  "Logo.scale-80.png", path);
+            EncodeAndSave(Win8Logo80, "Logo.scale-80.png", path);
 
             EncodeAndSave(Win8SmallLogo180, "SmallLogo.scale-180.png", path);
             EncodeAndSave(Win8SmallLogo140, "SmallLogo.scale-140.png", path);
             EncodeAndSave(Win8SmallLogo100, "SmallLogo.scale-100.png", path);
-            EncodeAndSave(Win8SmallLogo80,  "SmallLogo.scale-80.png", path);
+            EncodeAndSave(Win8SmallLogo80, "SmallLogo.scale-80.png", path);
 
-            EncodeAndSave(Win8SmallLogoTarget256,"SmallLogo.target-256.png", path);
+            EncodeAndSave(Win8SmallLogoTarget256, "SmallLogo.target-256.png", path);
             EncodeAndSave(Win8SmallLogoTarget48, "SmallLogo.target-48.png", path);
             EncodeAndSave(Win8SmallLogoTarget32, "SmallLogo.target-32.png", path);
             EncodeAndSave(Win8SmallLogoTarget16, "SmallLogo.target-16.png", path);
@@ -270,7 +285,7 @@ namespace ImageShrinker
             e.Handled = true;
             string draggedFileName = IsSingleFile(e);
 
-            if (draggedFileName.Contains(".png") || draggedFileName.Contains(".PNG") ||  draggedFileName.Contains(".jpg") || draggedFileName.Contains(".JPG"))
+            if (draggedFileName.Contains(".png") || draggedFileName.Contains(".PNG") || draggedFileName.Contains(".jpg") || draggedFileName.Contains(".JPG"))
             {
                 //MessageBoxResult mbr = MessageBoxResult.OK;
                 //if (fileName != null)
@@ -299,9 +314,36 @@ namespace ImageShrinker
             string name = System.IO.Path.GetFileNameWithoutExtension(fileName);
             projectName.Text = name;
             CompleteNotice.Content = notice1;
+            
+            // WP7
             Wp7Icon300.Fill = null;
             Wp7Icon173.Fill = null;
             Wp7Icon62.Fill = null;
+
+            // WP8
+            Wp8AppIcon.Fill = null;
+            Wp8FlipMedium.Fill = null;
+            Wp8FlipSmall.Fill = null;
+
+            // Win8
+            Win8Logo180.Fill = null;
+            Win8Logo140.Fill = null;
+            Win8Logo100.Fill = null;
+            Win8Logo80.Fill = null;
+
+            Win8SmallLogo180.Fill = null;
+            Win8SmallLogo140.Fill = null;
+            Win8SmallLogo100.Fill = null;
+            Win8SmallLogo80.Fill = null;
+            Win8SmallLogoTarget256.Fill = null;
+            Win8SmallLogoTarget48.Fill = null;
+            Win8SmallLogoTarget32.Fill = null;
+            Win8SmallLogoTarget16.Fill = null;
+
+            Win8StoreLogo180.Fill = null;
+            Win8StoreLogo140.Fill = null;
+            Win8StoreLogo100.Fill = null;
+
             myCanvas.Children.Remove(rectFrame);
         }
 
@@ -365,14 +407,14 @@ namespace ImageShrinker
             {
                 double w = Math.Abs(p1.X - p2.X);
                 double h = Math.Abs(p1.Y - p2.Y);
-                if (w > h) 
+                if (w > h)
                     p2.Y = (p2.Y > p1.Y) ? p1.Y + w : p1.Y - w;
-                else 
+                else
                     p2.X = (p2.X > p1.X) ? p1.X + h : p1.X - w;
 
                 Point lt = new Point((p1.X > p2.X) ? p2.X : p1.X, (p1.Y > p2.Y) ? p2.Y : p1.Y);
                 Point rb = new Point((p1.X > p2.X) ? p1.X : p2.X, (p1.Y > p2.Y) ? p1.Y : p2.Y);
-                
+
                 // rabber band
                 myCanvas.Children.Remove(rectFrame);
                 rectFrame.Stroke = Brushes.Gray;
@@ -396,6 +438,11 @@ namespace ImageShrinker
                 Wp7Icon300.Fill = brush;
                 Wp7Icon173.Fill = brush;
                 Wp7Icon62.Fill = brush;
+
+                // WP8
+                Wp8AppIcon.Fill = brush;
+                Wp8FlipMedium.Fill = brush;
+                Wp8FlipSmall.Fill = brush;
 
                 // Win8
                 Win8Logo180.Fill = brush;
