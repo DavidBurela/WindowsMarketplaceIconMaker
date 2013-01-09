@@ -69,10 +69,10 @@
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock>Logo.scale-___.png</TextBlock>
-                        <Rectangle Name="Win8Logo180" Width="180" Height="180" Margin="0,5,0,0" HorizontalAlignment="Center" />
-                        <Rectangle Name="Win8Logo140" Width="140" Height="140" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8Logo180" Width="270" Height="270" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8Logo140" Width="210" Height="210" Margin="0,5,0,0" HorizontalAlignment="Center" />
                         <Rectangle Name="Win8Logo100" Width="150" Height="150" Margin="0,5,0,0" HorizontalAlignment="Center" />
-                        <Rectangle Name="Win8Logo80"  Width="80"  Height="80" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        <Rectangle Name="Win8Logo80"  Width="120"  Height="120" Margin="0,5,0,0" HorizontalAlignment="Center" />
 
                         <TextBlock>SmallLogo.scale-___.png</TextBlock>
                         <Rectangle Name="Win8SmallLogo180" Width="54" Height="54" Margin="0,5,0,0" HorizontalAlignment="Center" />
