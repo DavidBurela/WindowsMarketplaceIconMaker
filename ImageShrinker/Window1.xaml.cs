@@ -21,6 +21,8 @@ namespace ImageShrinker
         public Window1()
         {
             InitializeComponent();
+
+            RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.HighQuality);
         }
 
         #region InitializeText
