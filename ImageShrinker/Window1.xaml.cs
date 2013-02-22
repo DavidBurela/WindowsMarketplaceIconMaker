@@ -352,6 +352,8 @@ namespace ImageShrinker
             Win8StoreLogo100.Fill = null;
 
             myCanvas.Children.Remove(rectFrame);
+
+            UpdatePreviewIcons(new Point(0, 0), new Point(imageSource.Width, imageSource.Height));
         }
 
         private string IsSingleFile(DragEventArgs args)
@@ -431,46 +433,49 @@ namespace ImageShrinker
                 rectFrame.RenderTransform = new TranslateTransform(lt.X, lt.Y);
                 myCanvas.Children.Add(rectFrame);
 
-                // Icon Images
-                Point sourceLt = new Point(lt.X * scale, lt.Y * scale);
-                Point sourceRb = new Point(rb.X * scale, rb.Y * scale);
-
-                ImageBrush brush = new ImageBrush();
-                brush.ImageSource = imageSource;
-                brush.Viewbox = new Rect(sourceLt, sourceRb);
-                brush.ViewboxUnits = BrushMappingMode.Absolute;
-                brush.Stretch = Stretch.Fill;
-
-                // WP7
-                Wp7Icon300.Fill = brush;
-                Wp7Icon173.Fill = brush;
-                Wp7Icon62.Fill = brush;
-
-                // WP8
-                Wp8AppIcon.Fill = brush;
-                Wp8FlipMedium.Fill = brush;
-                Wp8FlipSmall.Fill = brush;
-
-                // Win8
-                Win8Logo180.Fill = brush;
-                Win8Logo140.Fill = brush;
-                Win8Logo100.Fill = brush;
-                Win8Logo80.Fill = brush;
-
-                Win8SmallLogo180.Fill = brush;
-                Win8SmallLogo140.Fill = brush;
-                Win8SmallLogo100.Fill = brush;
-                Win8SmallLogo80.Fill = brush;
-                Win8SmallLogoTarget256.Fill = brush;
-                Win8SmallLogoTarget48.Fill = brush;
-                Win8SmallLogoTarget32.Fill = brush;
-                Win8SmallLogoTarget16.Fill = brush;
-
-                Win8StoreLogo180.Fill = brush;
-                Win8StoreLogo140.Fill = brush;
-                Win8StoreLogo100.Fill = brush;
-
+                UpdatePreviewIcons(lt, rb);
             }
+        }
+
+        private void UpdatePreviewIcons(Point lt, Point rb) {
+            // Icon Images
+            Point sourceLt = new Point(lt.X*scale, lt.Y*scale);
+            Point sourceRb = new Point(rb.X*scale, rb.Y*scale);
+
+            ImageBrush brush = new ImageBrush();
+            brush.ImageSource = imageSource;
+            brush.Viewbox = new Rect(sourceLt, sourceRb);
+            brush.ViewboxUnits = BrushMappingMode.Absolute;
+            brush.Stretch = Stretch.Fill;
+
+            // WP7
+            Wp7Icon300.Fill = brush;
+            Wp7Icon173.Fill = brush;
+            Wp7Icon62.Fill = brush;
+
+            // WP8
+            Wp8AppIcon.Fill = brush;
+            Wp8FlipMedium.Fill = brush;
+            Wp8FlipSmall.Fill = brush;
+
+            // Win8
+            Win8Logo180.Fill = brush;
+            Win8Logo140.Fill = brush;
+            Win8Logo100.Fill = brush;
+            Win8Logo80.Fill = brush;
+
+            Win8SmallLogo180.Fill = brush;
+            Win8SmallLogo140.Fill = brush;
+            Win8SmallLogo100.Fill = brush;
+            Win8SmallLogo80.Fill = brush;
+            Win8SmallLogoTarget256.Fill = brush;
+            Win8SmallLogoTarget48.Fill = brush;
+            Win8SmallLogoTarget32.Fill = brush;
+            Win8SmallLogoTarget16.Fill = brush;
+
+            Win8StoreLogo180.Fill = brush;
+            Win8StoreLogo140.Fill = brush;
+            Win8StoreLogo100.Fill = brush;
         }
 
         #endregion MouseMove
