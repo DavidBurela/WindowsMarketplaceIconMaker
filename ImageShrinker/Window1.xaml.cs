@@ -252,13 +252,18 @@ namespace ImageShrinker
         private void EncodeAndSave(FrameworkElement icon, string name, string filePath)
         {
             // Create BitmapFrame for Icon
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)icon.Width, (int)icon.Height, 96.0, 96.0, PixelFormats.Pbgra32);
-            DrawingVisual dv = new DrawingVisual();
+            var rtb = new RenderTargetBitmap((int)icon.Width, (int)icon.Height, 96.0, 96.0, PixelFormats.Pbgra32);
+
+            // Use DrawingGroup for high quality rendering
+            // See: http://www.olsonsoft.com/blogs/stefanolson/post/Workaround-for-low-quality-bitmap-resizing-in-WPF-4.aspx
+            var group = new DrawingGroup();
+            RenderOptions.SetBitmapScalingMode(group, BitmapScalingMode.HighQuality);
+            group.Children.Add(new ImageDrawing(imageSource, new Rect(new Point(), new Size((int)icon.Width, (int)icon.Height))));
+
+            var dv = new DrawingVisual();
             using (DrawingContext dc = dv.RenderOpen())
-            {
-                VisualBrush vb = new VisualBrush(icon);
-                dc.DrawRectangle(vb, null, new Rect(new Point(), new Size((int)icon.Width, (int)icon.Height)));
-            }
+                dc.DrawDrawing(group);
+
             rtb.Render(dv);
             BitmapFrame bmf = BitmapFrame.Create(rtb);
             bmf.Freeze();
