@@ -5,7 +5,7 @@ When creating applications for the Windows stores (RT & Phone), there are numero
 
 Downloading
 --------
-I will upload a compiled version in the future. For the moment you can download and compile the application.
+Compiled versions can be found under [releases](https://github.com/DavidBurela/WindowsMarketplaceIconMaker/releases)
 
 Usage
 --------
